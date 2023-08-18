@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Swiper: Slider
     var swiper = new Swiper('.swiper-container', {
         loop: true,
         slidesPerView: 1.5,   
         centeredSlides: true,
         spaceBetween: 20,
-        slideToClickedSlide: true,
+        // slideToClickedSlide: true,
         allowTouchMove: false,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
         mousewheel: {
             invert: true,
         },    
@@ -22,5 +23,16 @@ document.addEventListener('DOMContentLoaded', function() {
             swiper.slidePrev()
         }
     });
+
+    const next = document.querySelector('.swiper-button-next');
+    const prev = document.querySelector('.swiper-button-prev');
+
+    next.addEventListener('click', () => {
+        swiper.slideNext();
+    });
+
+    prev.addEventListener('click', () => {
+        swiper.slidePrev();
+    })
 });
 
