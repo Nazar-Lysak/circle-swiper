@@ -102,7 +102,7 @@ p {
 }
 
 .checked {
-  transform: scale(1.2) !important;
+  transform: scale(1.2) rotate(.5deg) !important;
   position: relative;
 
   
@@ -124,5 +124,6 @@ p {
 }
 
 .checked::after {
+  transition-delay: 0.3s;
   opacity: 1;
 }
