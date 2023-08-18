@@ -103,4 +103,26 @@ p {
 
 .checked {
   transform: scale(1.2) !important;
+  position: relative;
+
+  
+}
+
+.swiper-slide::after {
+  opacity: 0;
+  transition: .3s;
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: 80px;
+    height: 90px;
+    width: 90px;
+    background-image: url(./Subtract.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.checked::after {
+  opacity: 1;
 }
