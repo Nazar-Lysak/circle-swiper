@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const slideItem = document.querySelectorAll('.swiper-slide');
     var swiper = new Swiper('.swiper-container', {
         loop: true,
         slidesPerView: 1.5,   
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var hammer = new Hammer(swiperContainer);
 
     hammer.on('panstart', function(event) {
+        slideItem.forEach(el => el.classList.remove('checked'));
         if (event.direction === Hammer.DIRECTION_LEFT) {
             swiper.slideNext();
         } else if (event.direction === Hammer.DIRECTION_RIGHT) {
@@ -33,6 +35,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     prev.addEventListener('click', () => {
         swiper.slidePrev();
+    })
+
+    
+    
+    slideItem.forEach(slide => {
+        slideItem.forEach(el => el.classList.remove('checked'));
+        slide.addEventListener('click', () => {
+            if(slide.classList.contains('checked')) {
+                slide.classList.remove('checked')
+            } else {
+                slide.classList.add('checked')
+            }            
+        })
     })
 });
 
