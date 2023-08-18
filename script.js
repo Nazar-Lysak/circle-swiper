@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
         prevButton: '.swiper-button-prev',
         mousewheel: {
             invert: true,
+        },
+        on: {
+            slideChange: function () {
+                // Код, який виконується після зміни слайду
+                slideItem.forEach(el => el.classList.remove('checked'));
+            },
         },    
     });
 
@@ -18,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var hammer = new Hammer(swiperContainer);
 
     hammer.on('panstart', function(event) {
-        slideItem.forEach(el => el.classList.remove('checked'));
+        // slideItem.forEach(el => el.classList.remove('checked'));
         if (event.direction === Hammer.DIRECTION_LEFT) {
             swiper.slideNext();
         } else if (event.direction === Hammer.DIRECTION_RIGHT) {
