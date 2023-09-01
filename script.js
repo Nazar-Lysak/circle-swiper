@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const slideItem = document.querySelectorAll('.swiper-slide');
     var swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 1.5,   
+        slidesPerView: 3.5,   
         centeredSlides: true,
         spaceBetween: 20,
-        // slideToClickedSlide: true,
+        slideToClickedSlide: true,
         allowTouchMove: false,
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
@@ -13,18 +13,36 @@ document.addEventListener('DOMContentLoaded', function() {
             invert: true,
         },
         on: {
-            slideChange: function () {
-                // Код, який виконується після зміни слайду
-                slideItem.forEach(el => el.classList.remove('checked'));
+            init: function() {
+                updateAdjacentSlideClasses(this);
             },
-        },    
+            slideChange: function () {
+                updateAdjacentSlideClasses(this);
+            },
+        },
     });
+
+    function updateAdjacentSlideClasses(swiperInstance) {
+        var slides = swiperInstance.slides;
+
+        console.log(swiperInstance)
+    
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('custom-class-before-prev', 'custom-class-after-next');
+    
+            if (i === swiperInstance.activeIndex - 2) {
+                slides[i].classList.add('custom-class-before-prev');
+            } else if (i === swiperInstance.activeIndex + 2) {
+                slides[i].classList.add('custom-class-after-next');
+            }
+        }
+    }
 
     var swiperContainer = document.querySelector('.swiper-container');
     var hammer = new Hammer(swiperContainer);
 
     hammer.on('panstart', function(event) {
-        // slideItem.forEach(el => el.classList.remove('checked'));
+        slideItem.forEach(el => el.classList.remove('checked'));
         if (event.direction === Hammer.DIRECTION_LEFT) {
             swiper.slideNext();
         } else if (event.direction === Hammer.DIRECTION_RIGHT) {
@@ -41,9 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     prev.addEventListener('click', () => {
         swiper.slidePrev();
-    })
-
-    
+    })    
     
     slideItem.forEach(slide => {
         slideItem.forEach(el => el.classList.remove('checked'));

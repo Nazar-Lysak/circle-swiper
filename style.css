@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
 }
 
 .wrapper {
-  width: 390px;
+  width: 994px;
   height: 800px;
   background-color: #E3F2F1;
   border-radius: 6px;
@@ -38,16 +39,6 @@ img {
   user-drag: none;
 }
 
-.swiper-slide {
-  transition: .4s;  
-  opacity: 0;
-  background-color: #fff;
-  padding: 20px 0;
-  height: 395px;
-  flex-shrink: 0;
-  border-radius: 12px;
-}
-
 p {
   color: #0D7978;
   text-align: center;
@@ -56,74 +47,67 @@ p {
   font-style: normal;
   font-weight: 400;
   line-height: 26px; /* 162.5% */
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-
-
-.swiper-slide-prev {
-  transform-origin: right bottom;
-  transform: rotate(-5deg) !important;
-  top: 4px;
-  opacity: 1;
-  cursor: pointer;
-  
+.swiper-slide {
+  opacity: 0;
+  background-color: #fff;
+  padding: 20px 0;
+  height: 400px !important;
+  flex-shrink: 0;
+  border-radius: 12px;
+  position: relative;
+  bottom: -50px;
 }
 
 .swiper-slide-active {
-  transition: .4s;
-  top: 0;
+  transition: .3s;
+  opacity: 1;
+  bottom: 0;
+}
+.swiper-slide-next,
+.swiper-slide-prev {
+  transition: .3s;
+  opacity: 1;
+}
+
+.custom-class-before-prev,
+.custom-class-after-next {
+  transition: .3s;
   opacity: 1;
 }
 
 .swiper-slide-next {
+  transform: rotate(5deg);
+  bottom: -3px;
   transform-origin: left bottom;
-  transform: rotate(5deg) !important;
-  top: 4px;
-  opacity: 1;
-  cursor: pointer; 
+}
+
+.swiper-slide-prev {
+  transform: rotate(-5deg);
+  bottom: -3px;
+  transform-origin: right bottom;
+}
+
+.custom-class-before-prev {
+  transform: rotate(-12deg);
+  bottom: -30px;
+  transform-origin: right bottom;
+}
+.custom-class-after-next {
+  transform: rotate(12deg);
+  bottom: -30px;
+  transform-origin: left bottom;
+}
+
+.swiper-slide-active {
   
 }
 
-.swiper-button-next {
-  top: 20px;
-  width: 14%;
-  right: 0;
-  height: 100%;
-  opacity: 0;
-}
 
-.swiper-button-prev {
-  top: 20px;
-  width: 14%;
-  left: 0;
-  height: 100%;
-  opacity: 0;
-  background-color: aqua;
-}
 
-.checked {
-  transform: scale(1.2) rotate(.5deg) !important;
-  position: relative;
 
-  
-}
-
-.swiper-slide::after {
-  opacity: 0;
-  transition: .3s;
-    content: "";
-    position: absolute;
-    top: 6px;
-    right: 80px;
-    height: 90px;
-    width: 90px;
-    background-image: url(./Subtract.svg);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.checked::after {
-  transition-delay: 0.3s;
-  opacity: 1;
-}
